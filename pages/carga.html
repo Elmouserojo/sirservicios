@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cargar y Eliminar Productos - SIR</title>
+    <link rel="stylesheet" href="../estilos/estilos.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1><a href="../index.html">SIR Servicios</a></h1>
+        <nav>
+            <a href="../index.html">Inicio</a>
+            <a href="#">Servicios</a>
+            <a href="#">Acerca de</a>
+            <a href="#">Contacto</a>
+        </nav>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main>
+        <!-- Sección de Carga de Productos -->
+        <section id="cargaProductos">
+            <h2>Cargar Nuevo Producto</h2>
+            <form id="formCargaProducto">
+                <label for="fotoProducto">Foto del Producto:</label>
+                <input type="file" id="fotoProducto" accept="image/*" required>
+
+                <label for="nombreProducto">Nombre del Producto:</label>
+                <input type="text" id="nombreProducto" placeholder="Ingrese el nombre" required>
+
+                <label for="descripcionProducto">Descripción:</label>
+                <textarea id="descripcionProducto" placeholder="Ingrese la descripción" required></textarea>
+
+                <label for="precioProducto">Precio:</label>
+                <input type="number" id="precioProducto" placeholder="Ingrese el precio" required>
+
+                <button type="submit">Cargar Producto</button>
+            </form>
+        </section>
+
+        <!-- Sección de Eliminación de Productos -->
+        <section id="eliminarProductos">
+            <h2>Eliminar Productos</h2>
+            <div id="listaProductos">
+                <!-- Los productos cargados se mostrarán aquí -->
+                <p>No hay productos cargados.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 SIR Servicios. Todos los derechos reservados.</p>
+        <p><a href="#">Política de Privacidad</a> | <a href="#">Términos de Uso</a></p>
+    </footer>
+
+    <script src="../scripts/carga.js"></script>
+</body>
+</html>

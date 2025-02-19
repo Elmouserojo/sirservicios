@@ -1,0 +1,178 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Bebas Neue", sans-serif;
+  border-radius: 8px;
+}
+
+.precio {
+  font-weight: bold;
+  font-style: italic;
+}
+
+:root {
+  --color-primario: #4c7aaf; /* Color principal */
+  --color-secundario: #ffffff; /* Color secundario */
+  --color-fondo: #f4f4f4; /* Color de fondo */
+  --color-texto: #333; /* Color de texto */
+  --color-borde: #ccc; /* Color de bordes */
+  --color-sombra: rgba(0, 0, 0, 0.1); /* Color de sombra */
+}
+
+/* Estilos básicos */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--color-fondo);
+}
+
+/* Header */
+header {
+  background-color: var(--color-primario);
+  color: var(--color-secundario);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+a {
+  color: var(--color-secundario);
+  text-decoration: none;
+}
+
+header h1 {
+  margin: 0;
+}
+
+header nav {
+  display: flex;
+  gap: 20px;
+}
+
+header nav a {
+  color: var(--color-secundario);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+header nav a:hover {
+  text-decoration: underline;
+}
+
+/* Contenido Principal */
+main {
+  flex: 1;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+main h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#formCargaProducto {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+#formCargaProducto label {
+  font-weight: bold;
+}
+
+#formCargaProducto input,
+#formCargaProducto textarea {
+  padding: 10px;
+  border: 1px solid var(--color-borde);
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+#formCargaProducto button {
+  padding: 10px;
+  background-color: var(--color-primario);
+  color: var(--color-secundario);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+#formCargaProducto button:hover {
+  background-color: var(--color-primario);
+}
+
+.productos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.producto {
+  background-color: var(--color-secundario);
+  border: 1px solid var(--color-borde);
+  border-radius: 8px;
+  padding: 20px;
+  width: calc(23% - 20px); /* Ajustado para mostrar 4 productos */
+  min-width: 300px;
+  box-shadow: 0 0 10px var(--color-sombra);
+  text-align: center;
+}
+
+.producto img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.producto h3 {
+  margin-top: 0;
+  font-size: 1.5em;
+text-transform: uppercase;}
+
+.producto p {
+  color: var(--color-texto);
+  font-size: 1em;
+}
+
+.producto button {
+  background-color: var(--color-primario);
+  color: var(--color-secundario);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.producto button:hover {
+  background-color: var(--color-primario);
+}
+
+/* Footer */
+footer {
+  background-color: var(--color-texto);
+  color: var(--color-secundario);
+  text-align: center;
+  padding: 10px;
+}
+
+footer a {
+  color: var(--color-primario);
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
