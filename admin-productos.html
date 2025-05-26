@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrar Productos - SIR Servicios</title>
+    <link rel="stylesheet" href="./estilos/estilos.css"> <style>
+        /* Estilos básicos para la página de admin */
+        body { padding: 20px; font-family: sans-serif; }
+        .admin-container { max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1, h2 { text-align: center; color: var(--dark-color); }
+        .form-section, .actions-section, .preview-section { margin-bottom: 30px; padding: 20px; border: 1px solid #ddd; border-radius: 5px; background-color: #fff; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .form-group textarea { min-height: 80px; resize: vertical; }
+        .btn-admin {
+            background-color: var(--primary-color); color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem; margin-right: 10px;
+        }
+        .btn-admin:hover { background-color: var(--dark-color); }
+        .btn-download { background-color: var(--success-color, #28a745); }
+        #productListPreview { list-style-type: disc; padding-left: 20px; }
+        #productListPreview li { margin-bottom: 5px; }
+        .product-item-preview { padding: 5px; background-color: #e9ecef; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <h1>Administrar Productos</h1>
+
+        <div class="form-section">
+            <h2>Añadir Nuevo Producto</h2>
+            <form id="addProductForm">
+                <div class="form-group">
+                    <label for="productName">Nombre del Producto:</label>
+                    <input type="text" id="productName" required>
+                </div>
+                <div class="form-group">
+                    <label for="productBrand">Marca:</label>
+                    <input type="text" id="productBrand">
+                </div>
+                <div class="form-group">
+                    <label for="productModel">Modelo:</label>
+                    <input type="text" id="productModel">
+                </div>
+                <div class="form-group">
+                    <label for="productImage">Ruta de Imagen (ej: ./imagenes/productos/nuevo.jpg):</label>
+                    <input type="text" id="productImage" placeholder="./imagenes/productos/tu-imagen.jpg">
+                </div>
+                <div class="form-group">
+                    <label for="productAlt">Texto Alternativo (Alt) de la Imagen:</label>
+                    <input type="text" id="productAlt">
+                </div>
+                <div class="form-group">
+                    <label for="productDescription">Descripción:</label>
+                    <textarea id="productDescription"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="productPrice">Precio (ej: 1250.99):</label>
+                    <input type="number" id="productPrice" step="0.01" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="productStock">Stock (Cantidad):</label>
+                    <input type="number" id="productStock" step="1" min="0" required>
+                </div>
+                <button type="submit" class="btn-admin">Añadir Producto a la Lista</button>
+            </form>
+        </div>
+
+        <div class="preview-section">
+            <h2>Productos en la Lista Actual</h2>
+            <p><small>(Esta lista se reinicia si recargas la página sin descargar. Siempre descarga el JSON después de añadir productos)</small></p>
+            <ul id="productListPreview">
+                </ul>
+        </div>
+
+        <div class="actions-section">
+            <h2>Acciones</h2>
+            <button id="downloadJsonBtn" class="btn-admin btn-download">Descargar Archivo products.json Actualizado</button>
+            <button id="clearListBtn" class="btn-admin" style="background-color: #dc3545;">Limpiar Lista Previsualizada (no afecta el JSON original)</button>
+        </div>
+         <p><a href="index.html">Volver al sitio principal</a></p>
+    </div>
+
+    <script>
+
+        // Al inicio del script en admin-productos.html
+const password = prompt("Ingresa la contraseña para acceder a esta sección:");
+const ADMIN_PASSWORD = "SirServicios123"; // Cambia esto por una contraseña real
+
+if (password !== ADMIN_PASSWORD) {
+    alert("Contraseña incorrecta. No puedes acceder a esta sección.");
+    // Redirigir o bloquear contenido
+    document.body.innerHTML = '<h1>Acceso Denegado</h1><p>No tienes permiso para ver esta página.</p>';
+    throw new Error("Acceso denegado"); // Detiene la ejecución del resto del script
+}
+// El resto del script de admin va aquí...
+
+        document.addEventListener('DOMContentLoaded', () => {
+    const addProductForm = document.getElementById('addProductForm');
+    const downloadJsonBtn = document.getElementById('downloadJsonBtn');
+    const productListPreview = document.getElementById('productListPreview');
+    const clearListBtn = document.getElementById('clearListBtn');
+
+    let currentProducts = []; // Aquí almacenaremos los productos
+
+    // Función para cargar productos existentes desde el archivo JSON original
+    async function loadInitialProducts() {
+        try {
+            // La ruta debe ser relativa a admin-productos.html para llegar a data/products.json
+            // Si admin-productos.html está en la raíz, y products.json en data/, la ruta es correcta.
+            const response = await fetch('./data/products.json'); 
+            if (response.ok) {
+                currentProducts = await response.json();
+            } else {
+                console.warn('No se encontró products.json existente o no se pudo cargar. Se comenzará con una lista vacía.');
+                currentProducts = [];
+            }
+        } catch (error) {
+            console.warn('Error al cargar products.json existente. Se comenzará con una lista vacía.', error);
+            currentProducts = [];
+        }
+        renderProductPreview();
+    }
+
+    // Función para mostrar los productos en la lista de previsualización
+    function renderProductPreview() {
+        productListPreview.innerHTML = '';
+        currentProducts.forEach(product => {
+            const li = document.createElement('li');
+            li.textContent = `${product.name} (ID: ${product.id}) - Precio: $${product.price}, Stock: ${product.stock}`;
+            li.className = 'product-item-preview';
+            productListPreview.appendChild(li);
+        });
+    }
+
+    // Generar un nuevo ID para el producto
+    function getNextId() {
+        if (currentProducts.length === 0) {
+            return 1;
+        }
+        // Encontrar el ID máximo actual y sumarle 1
+        const maxId = currentProducts.reduce((max, p) => p.id > max ? p.id : max, 0);
+        return maxId + 1;
+    }
+
+    // Manejar el envío del formulario para añadir producto
+    addProductForm.addEventListener('submit', (e) => {
+        e.preventDefault(); // Evitar que la página se recargue
+
+        const newProduct = {
+            id: getNextId(),
+            name: document.getElementById('productName').value.trim(),
+            brand: document.getElementById('productBrand').value.trim(),
+            model: document.getElementById('productModel').value.trim(),
+            image: document.getElementById('productImage').value.trim() || './imagenes/productos/default.jpg', // Ruta por defecto
+            alt: document.getElementById('productAlt').value.trim() || 'Imagen de producto', // Alt por defecto
+            description: document.getElementById('productDescription').value.trim(),
+            price: parseFloat(document.getElementById('productPrice').value).toFixed(2),
+            stock: parseInt(document.getElementById('productStock').value, 10)
+        };
+
+        // Validaciones básicas (puedes añadir más)
+        if (!newProduct.name || isNaN(newProduct.price) || isNaN(newProduct.stock)) {
+            alert('Por favor, completa el nombre, precio y stock correctamente.');
+            return;
+        }
+
+        currentProducts.push(newProduct);
+        renderProductPreview(); // Actualizar la previsualización
+        addProductForm.reset(); // Limpiar el formulario
+        alert('¡Producto añadido a la lista! No olvides descargar el JSON actualizado.');
+    });
+
+    // Función para descargar el archivo JSON
+    function downloadJsonFile(content, fileName, contentType) {
+        const a = document.createElement("a");
+        const file = new Blob([content], { type: contentType });
+        a.href = URL.createObjectURL(file);
+        a.download = fileName;
+        a.click();
+        URL.revokeObjectURL(a.href); // Liberar el objeto URL
+    }
+
+    downloadJsonBtn.addEventListener('click', () => {
+        if (currentProducts.length === 0) {
+            alert('No hay productos en la lista para descargar.');
+            return;
+        }
+        const jsonContent = JSON.stringify(currentProducts, null, 2); // El 'null, 2' formatea el JSON para que sea legible
+        downloadJsonFile(jsonContent, 'products.json', 'application/json');
+    });
+    
+    clearListBtn.addEventListener('click', () => {
+        if (confirm('¿Estás seguro de que quieres limpiar la lista previsualizada? Esto no afectará tu archivo products.json original hasta que descargues uno nuevo.')) {
+            currentProducts = []; // O podrías recargar desde el original: loadInitialProducts();
+            renderProductPreview();
+            alert('Lista previsualizada limpiada. Puedes volver a cargar los productos originales o empezar de cero.');
+        }
+    });
+
+    // Cargar productos iniciales (si existen) cuando la página carga
+    loadInitialProducts();
+});
+    </script>
+</body>
+</html>

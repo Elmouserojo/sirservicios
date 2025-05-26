@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./estilos/estilos.css">
-    <title>SIR Servicios</title>
+    <title>SIR Servicios - Soluciones en Refrigeración</title>
     
-</head>
+    <link rel="stylesheet" href="./estilos/estilos.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="container header-container">
             <a href="#inicio" class="logo">SIR<span>Servicios</span></a>
-            <button class="mobile-menu-btn">☰</button>
-            <nav>
+            <button class="mobile-menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav">☰</button>
+            <nav id="main-nav">
                 <ul>
                     <li><a href="#inicio">Inicio</a></li>
                     <li><a href="#nosotros">Nosotros</a></li>
@@ -24,7 +26,6 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero" id="inicio">
         <div class="container hero-content">
             <h1>Soluciones Integrales en Refrigeración</h1>
@@ -33,7 +34,6 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section class="section" id="nosotros">
         <div class="container">
             <h2 class="section-title">Sobre Nosotros</h2>
@@ -44,116 +44,28 @@
                     <p>En SIR Servicios nos enorgullecemos de trabajar con las mejores marcas del mercado y ofrecer garantías extendidas en todos nuestros productos y servicios.</p>
                 </div>
                 <div class="about-image">
-                    <img src="./imagenes/osvaldo.jpg" alt="Equipos Exteriores de Refrigeración">
+                    <img src="./imagenes/osvaldo.jpg" alt="Equipo técnico de SIR Servicios">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Products Section -->
     <section class="section products" id="productos">
         <div class="container">
             <h2 class="section-title">Nuestros Productos</h2>
-            <div class="products-grid">
-                <!-- Producto 1 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="./imagenes/termometros.jpg" alt="Aire acondicionado split">
-                    </div>
-                    <div class="product-info">
-                        <span class="product-brand">Sir Servicios</span>
-                        <h3 class="product-name">Termómetro digital magnético</h3>
-                        <span class="product-model">Modelo: SS 1.2 </span>
-                        <p class="product-description">Termómetro digital magnético para refrigeración con pantalla LCD y sonda de temperatura incluida.</p>
-                        <div class="product-price">$1,299.99</div>
-                        <span class="product-stock">En stock: 15 unidades</span>
-                    </div>
-                </div>
-
-                <!-- Producto 2 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1590845947676-fa2576f401d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Freezer vertical">
-                    </div>
-                    <div class="product-info">
-                        <span class="product-brand">Mabe</span>
-                        <h3 class="product-name">Freezer Vertical</h3>
-                        <span class="product-model">Modelo: FVH45X</span>
-                        <p class="product-description">Freezer vertical de 14.5 pies cúbicos con sistema No Frost, control digital y eficiencia energética A+.</p>
-                        <div class="product-price">$899.99</div>
-                        <span class="product-stock">En stock: 8 unidades</span>
-                    </div>
-                </div>
-
-                <!-- Producto 3 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Compresor frigorífico">
-                    </div>
-                    <div class="product-info">
-                        <span class="product-brand">Embraco</span>
-                        <h3 class="product-name">Compresor Frigorífico</h3>
-                        <span class="product-model">Modelo: EGX70HLP</span>
-                        <p class="product-description">Compresor hermético para refrigeración comercial de 1/3 HP, 220V, ideal para vitrinas y cámaras frigoríficas.</p>
-                        <div class="product-price">$349.99</div>
-                        <span class="product-stock out">Agotado</span>
-                    </div>
-                </div>
-
-                <!-- Producto 4 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1581093057305-3ec4a37c9e0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Termostato digital">
-                    </div>
-                    <div class="product-info">
-                        <span class="product-brand">Danfoss</span>
-                        <h3 class="product-name">Termostato Digital</h3>
-                        <span class="product-model">Modelo: EKC 347</span>
-                        <p class="product-description">Controlador digital para sistemas de refrigeración con pantalla LCD, programable y sonda de temperatura incluida.</p>
-                        <div class="product-price">$129.99</div>
-                        <span class="product-stock">En stock: 22 unidades</span>
-                    </div>
-                </div>
-
-                <!-- Producto 5 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Aire acondicionado portátil">
-                    </div>
-                    <div class="product-info">
-                        <span class="product-brand">Samsung</span>
-                        <h3 class="product-name">Aire Acondicionado Portátil</h3>
-                        <span class="product-model">Modelo: AR12TXHQBWKN</span>
-                        <p class="product-description">Aire portátil de 12.000 BTU con función frío/calor, mando a distancia y temporizador 24h.</p>
-                        <div class="product-price">$749.99</div>
-                        <span class="product-stock">En stock: 5 unidades</span>
-                    </div>
-                </div>
-
-                <!-- Producto 6 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Vitrina refrigerada">
-                    </div>
-                    <div class="product-info">
-                        <span class="product-brand">Boreal</span>
-                        <h3 class="product-name">Vitrina Refrigerada</h3>
-                        <span class="product-model">Modelo: VR-2M</span>
-                        <p class="product-description">Vitrina expositora de 2 metros con iluminación LED, puertas de cristal y temperatura regulable.</p>
-                        <div class="product-price">$2,199.99</div>
-                        <span class="product-stock">En stock: 3 unidades</span>
-                    </div>
-                </div>
+            <div class="search-container">
+                <input type="text" id="search-bar" placeholder="Buscar productos por nombre, marca, modelo...">
             </div>
+            <div class="products-grid">
+                </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section class="section" id="contacto">
         <div class="container">
             <h2 class="section-title">Contacto</h2>
             <div class="contact-form">
-                <form>
+                <form action="TU_URL_DE_PROCESAMIENTO" method="POST">
                     <div class="form-group">
                         <label for="name">Nombre</label>
                         <input type="text" id="name" name="name" required>
@@ -164,7 +76,7 @@
                     </div>
                     <div class="form-group">
                         <label for="message">Mensaje</label>
-                        <textarea id="message" name="message" required></textarea>
+                        <textarea id="message" name="message" rows="5" required></textarea>
                     </div>
                     <button type="submit" class="btn">Enviar Mensaje</button>
                 </form>
@@ -172,7 +84,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -185,7 +96,7 @@
                     <ul>
                         <li>Av. Refrigeración 1234, Montevideo</li>
                         <li>Tel: 2900 1234</li>
-                        <li>Email: info@SIR Servicios.com</li>
+                        <li>Email: info@sirservicios.com</li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -199,30 +110,18 @@
                 <div class="footer-column">
                     <h3>Síguenos</h3>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f">f</i></a>
-                        <a href="#"><i class="fab fa-instagram">ig</i></a>
-                        <a href="#"><i class="fab fa-whatsapp">w</i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook de SIR Servicios"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram de SIR Servicios"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp de SIR Servicios"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 SIR Servicios. Todos los derechos reservados.</p>
+                <p>&copy; <span id="current-year"></span> SIR Servicios. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Menú móvil simple
-        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
-            document.querySelector('nav').classList.toggle('active');
-        });
-        
-        // Cerrar menú al hacer clic en un enlace
-        document.querySelectorAll('nav ul li a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.querySelector('nav').classList.remove('active');
-            });
-        });
-    </script>
+    <script src="./scripts/script.js"></script>
 </body>
 </html>
