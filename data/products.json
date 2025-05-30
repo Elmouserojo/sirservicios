@@ -67,24 +67,24 @@
   },
   {
     "id": 7,
-    "image": "./imagenes/placeholder-aire-usado.jpg",
-    "alt": "Aire Acondicionado 3600w F/C usado",
-    "brand": "MARCA_AIRE_USADO",
-    "name": "Aire 3600w F/C usado",
-    "model": "3600w F/C",
-    "description": "Equipo de Aire Acondicionado usado, 3600 frigorías, Frío/Calor. Consultar estado y detalles.",
-    "price": "700000.00",
+    "image": "./imagenes/aceite-refrioil.png",
+    "alt": "Aceite para bomba de vacío",
+    "brand": "Refriol",
+    "name": "Aceite bomba de vacío Refrioil",
+    "model": "500ml",
+    "description": "Aceite de alta calidad para bombas de vacío, esencial para el mantenimiento de equipos de refrigeración.",
+    "price": "7000.00",
     "stock": 1
   },
   {
     "id": 8,
-    "name": "Aire",
-    "brand": "Aire",
-    "model": "split F/C",
-    "image": "./imagenes/productos/default.jpg",
-    "alt": "Aire friocalor",
-    "description": "Esto es un aire frio calor",
-    "price": "600000.00",
-    "stock": 1
+    "name": "Bisagra",
+    "brand": "Sir",
+    "model": "Cámara de refrigeración",
+    "image": "./imagenes/bisagra.png",
+    "alt": "Bisagra negra para cámara de refrigeración",
+    "description": "Bisagra negra para cámara de refrigeración, ideal para puertas de cámaras frigoríficas.",
+    "price": "6000.00",
+    "stock": 4
   }
 ]
