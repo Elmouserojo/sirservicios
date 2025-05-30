@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "image": "./imagenes/placeholder-aceite.jpg",
+    "image": "./imagenes/aceiteGenerico.png",
     "alt": "Aceite para bomba de vacío",
     "brand": "MARCA_GENERICA",
     "name": "Aceite bomba de vacío",
@@ -12,7 +12,7 @@
   },
   {
     "id": 2,
-    "image": "./imagenes/placeholder-lata-freon.jpg",
+    "image": "./imagenes/freon404A-chemours.png",
     "alt": "Lata de gas refrigerante Freon MO49 750g",
     "brand": "Freon",
     "name": "Lata Freon MO49 750g",
@@ -23,7 +23,7 @@
   },
   {
     "id": 3,
-    "image": "./imagenes/placeholder-lata-r134.jpg",
+    "image": "./imagenes/r134A-bluestar.png",
     "alt": "Lata de gas refrigerante R134 Bluestar 900g",
     "brand": "Bluestar",
     "name": "Lata R134 Bluestar 900g",
@@ -34,7 +34,7 @@
   },
   {
     "id": 4,
-    "image": "./imagenes/placeholder-aislacion.jpg",
+    "image": "./imagenes/tuboCobre.png",
     "alt": "Aislación para caño de 1/2 pulgada por 2 metros",
     "brand": "MARCA_AISLACION",
     "name": "Aislación 1/2 - x 2 mtrs",
@@ -45,7 +45,7 @@
   },
   {
     "id": 5,
-    "image": "./imagenes/placeholder-aislacion-caja.jpg",
+    "image": "./imagenes/tuboCobre.png",
     "alt": "Caja de aislación para caños de 1/2 pulgada",
     "brand": "MARCA_AISLACION",
     "name": "Aislación 1/2 - x caja",
@@ -56,7 +56,7 @@
   },
   {
     "id": 6,
-    "image": "./imagenes/placeholder-cano-cobre.jpg",
+    "image": "./imagenes/tuboCobre.png",
     "alt": "Caño de cobre de 1/2 pulgada por metro",
     "brand": "MARCA_CANO_COBRE",
     "name": "Caño cobre 1/2 - x metro",
