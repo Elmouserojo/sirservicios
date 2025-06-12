@@ -86,5 +86,17 @@
     "description": "Bisagra negra para cámara de refrigeración, ideal para puertas de cámaras frigoríficas.",
     "price": "6000.00",
     "stock": 4
+  },
+
+  {
+    "id": 9,
+    "name": "Prueba",
+    "brand": "Sir",
+    "model": "Cámara de refrigeración",
+    "image": "./imagenes/bisagra.png",
+    "alt": "Bisagra negra para cámara de refrigeración",
+    "description": "Bisagra negra para cámara de refrigeración, ideal para puertas de cámaras frigoríficas.",
+    "price": "1.00",
+    "stock": 1
   }
 ]
