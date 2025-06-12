@@ -47,9 +47,9 @@ export default async function handler(request, response) {
       ],
       // URLs a las que el cliente será redirigido después del pago
       back_urls: {
-        success: 'https://sirservicios.vercel.app/pago-exitoso.html',
-        failure: 'https://sirservicios.vercel.app/pago-fallido.html',
-        pending: 'https://sirservicios.vercel.app/pago-pendiente.html',
+        success: 'https://www.sirsrvicios.ar/pago-exitoso.html',
+        failure: 'https://www.sirsrvicios.ar/pago-fallido.html',
+        pending: 'https://www.sirsrvicios.ar/pago-pendiente.html',
       },
       // Redirigir automáticamente a la página de éxito si el pago es aprobado
       auto_return: 'approved',
