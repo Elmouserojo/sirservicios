@@ -27,59 +27,74 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchBar = document.getElementById('search-bar');
     let allProducts = [];
 
-    function displayProducts(productsToDisplay) {
-        if (!productsGrid) return;
-        productsGrid.innerHTML = '';
+    // Reemplaza la función displayProducts en tu archivo ./scripts/script.js
 
-        if (productsToDisplay.length === 0) {
-            // (código de mensajes sin cambios...)
-            if (searchBar && searchBar.value.trim() !== '') {
-                productsGrid.innerHTML = '<p class="no-products-message">No se encontraron productos que coincidan con tu búsqueda.</p>';
-            } else {
-                 productsGrid.innerHTML = '<p class="no-products-message">No hay productos disponibles en este momento.</p>';
-            }
-            return;
+function displayProducts(productsToDisplay) {
+    if (!productsGrid) return;
+    productsGrid.innerHTML = '';
+
+    if (productsToDisplay.length === 0) {
+        if (searchBar && searchBar.value.trim() !== '') {
+            productsGrid.innerHTML = '<p class="no-products-message">No se encontraron productos que coincidan con tu búsqueda.</p>';
+        } else {
+             productsGrid.innerHTML = '<p class="no-products-message">No hay productos disponibles en este momento.</p>';
         }
-
-        productsToDisplay.forEach(product => {
-            const productCard = document.createElement('div');
-            productCard.className = 'product-card';
-
-            let stockStatusClass = product.stock === 0 ? 'out' : '';
-            let stockText = product.stock === 0 ? 'Agotado' : `En stock: ${product.stock} unidades`;
-            const formattedPrice = parseFloat(product.price).toFixed(2);
-            
-            // --- INICIO DE CAMBIOS EN LA TARJETA ---
-            // Creamos un botón en lugar de un enlace.
-            // Usamos un atributo `data-product-id` para saber qué producto se quiere comprar.
-            // Si el stock es 0, desactivamos el botón.
-            const buyButtonDisabled = product.stock === 0;
-            const buyButtonText = product.stock === 0 ? 'Sin Stock' : 'Pagar con Mercado Pago';
-            
-            productCard.innerHTML = `
-                <div class="product-image">
-                    <img src="${product.image}" alt="${product.alt}">
-                </div>
-                <div class="product-info">
-                    <span class="product-brand">${product.brand || ''}</span>
-                    <h3 class="product-name">${product.name}</h3>
-                    <span class="product-model">Modelo: ${product.model || ''}</span>
-                    <p class="product-description">${product.description || 'Descripción no disponible.'}</p>
-                    <div class="product-price">$${formattedPrice}</div>
-                    <span class="product-stock ${stockStatusClass}">${stockText}</span>
-                    <button 
-                        class="btn btn-pay" 
-                        data-product-id="${product.id}"
-                        ${buyButtonDisabled ? 'disabled' : ''}>
-                        ${buyButtonText}
-                    </button>
-                </div>
-            `;
-            // --- FIN DE CAMBIOS EN LA TARJETA ---
-            productsGrid.appendChild(productCard);
-        });
+        return;
     }
 
+    productsToDisplay.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+
+        const productPrice = parseFloat(product.price);
+        const formattedPrice = productPrice.toFixed(2);
+
+        // --- INICIO DE LA LÓGICA MEJORADA PARA EL BOTÓN ---
+        let stockStatusClass = product.stock === 0 ? 'out' : '';
+        let stockText = product.stock === 0 ? 'Agotado' : `En stock: ${product.stock} unidades`;
+        
+        let buyButtonText = 'Pagar con Mercado Pago';
+        let buyButtonDisabled = false;
+
+        if (product.stock === 0) {
+            buyButtonText = 'Sin Stock';
+            buyButtonDisabled = true;
+        } else if (productPrice <= 0) {
+            buyButtonText = 'Consultar Precio';
+            // Para el botón de consultar, podríamos cambiarlo por un enlace a WhatsApp
+            // Por ahora, simplemente lo desactivaremos para el pago.
+            buyButtonDisabled = true; 
+        }
+        // --- FIN DE LA LÓGICA MEJORADA PARA EL BOTÓN ---
+        
+        const productNameEncoded = encodeURIComponent(product.name);
+        const whatsappNumber = "5491176238019";
+        const whatsappMessage = `Hola, estoy interesado en el producto: ${product.name} (ID: ${product.id || 'N/A'}). ¿Podrían darme más información sobre el precio y la disponibilidad?`;
+        const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+        // Si el precio es 0, podríamos mostrar el botón de WhatsApp en lugar del de pago.
+        const finalButton = buyButtonDisabled && productPrice <= 0 
+            ? `<a href="${whatsappLink}" class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> ${buyButtonText}</a>`
+            : `<button class="btn btn-pay" data-product-id="${product.id}" ${buyButtonDisabled ? 'disabled' : ''}>${buyButtonText}</button>`;
+
+
+        productCard.innerHTML = `
+            <div class="product-image">
+                <img src="${product.image}" alt="${product.alt}">
+            </div>
+            <div class="product-info">
+                <span class="product-brand">${product.brand || ''}</span>
+                <h3 class="product-name">${product.name}</h3>
+                <span class="product-model">Modelo: ${product.model || ''}</span>
+                <p class="product-description">${product.description || 'Descripción no disponible.'}</p>
+                <div class="product-price">${productPrice > 0 ? '$' + formattedPrice : ''}</div>
+                <span class="product-stock ${stockStatusClass}">${stockText}</span>
+                ${finalButton}
+            </div>
+        `;
+        productsGrid.appendChild(productCard);
+    });
+}
     // --- INICIO DE NUEVA LÓGICA PARA MANEJAR EL PAGO ---
     // Usamos "delegación de eventos" para escuchar clics en los botones de pago
     if (productsGrid) {
