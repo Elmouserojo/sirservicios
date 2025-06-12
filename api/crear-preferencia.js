@@ -47,9 +47,9 @@ export default async function handler(request, response) {
       ],
       // URLs a las que el cliente será redirigido después del pago
       back_urls: {
-        success: 'https://SITIO_WEB_DE_SIR_SERVICIOS/pago-exitoso', // Cambia esto por tu URL real
-        failure: 'https://SITIO_WEB_DE_SIR_SERVICIOS/pago-fallido',
-        pending: 'https://SITIO_WEB_DE_SIR_SERVICIOS/pago-pendiente',
+        success: 'https://www.sirsrvicios.ar/pago-exitoso.html',
+        failure: 'https://www.sirsrvicios.ar/pago-fallido.html',
+        pending: 'https://www.sirsrvicios.ar/pago-pendiente.html',
       },
       // Redirigir automáticamente a la página de éxito si el pago es aprobado
       auto_return: 'approved',
