@@ -607,3 +607,21 @@ footer {
     font-size: 0.95rem;
   }
 }
+
+.btn-pay {
+    background-color: var(--primary-color); /* Usamos el color primario para el botón de pago */
+    color: white;
+    margin-top: 10px;
+    width: 100%; /* Para que ocupe todo el ancho disponible */
+}
+
+.btn-pay:hover {
+    background-color: var(--dark-color);
+}
+
+/* Estilo para cuando el botón está desactivado (sin stock o procesando) */
+.btn-pay:disabled {
+    background-color: #a0a0a0; /* Un color gris */
+    cursor: not-allowed;
+    transform: none; /* Quitamos el efecto de hover */
+}
